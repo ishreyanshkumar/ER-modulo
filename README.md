@@ -31,6 +31,12 @@ This engine goes far beyond simple drawing. It implements strict relational data
   - Supports **Total** vs **Partial** completeness.
   - **SQL Compilation:** Choose between _Method 1_ (Keep parent table, use FKs in children) or _Method 2_ (Push-down/flatten parent attributes into child tables).
 
+### 🎨 UI/UX Design (Figma-Inspired)
+
+- **Top Ribbon & Properties Popover:** A sleek, space-saving top ribbon replaces the heavy right sidebar, housing global actions and a floating, context-aware properties popover for editing entity attributes.
+- **Floating Bottom Toolbar:** Essential drawing tools (Select, Entity, Relationship, Attribute, Note) are accessible via a floating, glassmorphic bottom toolbar.
+- **Fluid Canvas & Typography:** The rigid dotted grid has been removed in favor of a clean, fluid workspace, complemented by the modern 'Inter' font for a professional aesthetic.
+
 ### 🛠️ Engineering UX
 
 - **Smart Auto-Routing:** Edges use custom ray-casting algorithms to perfectly snap to the mathematical centers of complex bounding boxes.
