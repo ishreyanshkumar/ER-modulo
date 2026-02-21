@@ -338,6 +338,7 @@ export function useDiagramState() {
     setDragConnectStart,
     darkMode,
     setDarkMode,
+    sqlModalOpen,
     setSqlModalOpen,
     importModalOpen,
     setImportModalOpen,

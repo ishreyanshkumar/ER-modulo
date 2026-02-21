@@ -169,6 +169,14 @@ export default function TopRibbon({
            </div>
         )}
 
+        {activeNode && activeNode.shape === 'aggregation' && (
+           <div className={`flex items-center gap-3 px-4 py-1.5 rounded-2xl ${darkMode ? 'bg-neutral-800/50 border-neutral-700' : 'bg-neutral-50 border-neutral-200'} border shadow-inner`}>
+              <span className={`text-xs font-bold uppercase tracking-widest ${darkMode ? 'text-neutral-400' : 'text-neutral-500'}`}>Aggregation</span>
+              <Separator />
+              <button onClick={deleteSelectedItem} className="p-1.5 rounded-lg hover:bg-red-500/10 text-red-500" title="Delete"><Trash2 size={14}/></button>
+           </div>
+        )}
+
         {activeEdge && (
            <div className={`flex items-center gap-3 px-4 py-1.5 rounded-2xl ${darkMode ? 'bg-neutral-800/50 border-neutral-700' : 'bg-neutral-50 border-neutral-200'} border shadow-inner`}>
               <LinkIcon size={14} className="text-neutral-400" />

@@ -11,7 +11,7 @@ export const Port = React.memo(({ position, setDragConnectStart, node }) => {
   };
   return (
     <div onPointerDown={(e) => { e.stopPropagation(); setDragConnectStart(node); }}
-      className={`port-handle absolute w-3.5 h-3.5 bg-sky-500 border-2 border-white rounded-full opacity-0 group-hover:opacity-100 hover:scale-150 transition-all duration-200 cursor-crosshair shadow-md z-30 ${classes[position]}`}
+      className={`port-handle pointer-events-auto absolute w-3.5 h-3.5 bg-sky-500 border-2 border-white rounded-full opacity-0 group-hover:opacity-100 hover:scale-150 transition-all duration-200 cursor-crosshair shadow-md z-30 ${classes[position]}`}
     />
   );
 });
@@ -112,10 +112,15 @@ export default function Canvas({
           
           if (node.shape === 'aggregation') {
              return (
-                <div key={node.id} onPointerDown={(e) => handlePointerDown(e, 'node', node)} onPointerUp={(e) => handleNodePointerUp(e, node)}
-                     className={`absolute border-2 border-dashed border-sky-400 bg-sky-50/30 rounded-xl transition-all ${isSelected ? 'ring-2 ring-sky-500 shadow-lg' : ''}`}
+                <div key={node.id} 
+                     className={`absolute border-2 border-dashed border-sky-400 bg-sky-50/30 rounded-xl transition-all pointer-events-none group ${isSelected ? 'ring-2 ring-sky-500 shadow-lg' : ''}`}
                      style={{ left: bounds.x, top: bounds.y, width: bounds.w, height: bounds.h, zIndex: 0 }}>
-                     <div className="absolute -top-6 left-2 text-xs font-bold text-sky-600 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200">{node.name}</div>
+                     <div className="absolute -top-6 left-2 pointer-events-auto">
+                       <span onPointerDown={(e) => handlePointerDown(e, 'node', node)} onPointerUp={(e) => handleNodePointerUp(e, node)}
+                             className="text-xs font-bold text-sky-600 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200 cursor-grab active:cursor-grabbing hover:bg-sky-100 transition-colors inline-block">
+                          {node.name}
+                       </span>
+                     </div>
                      {!isCurrentlyDragging && <><Port node={node} position="top" setDragConnectStart={setDragConnectStart} /><Port node={node} position="right" setDragConnectStart={setDragConnectStart} /><Port node={node} position="bottom" setDragConnectStart={setDragConnectStart} /><Port node={node} position="left" setDragConnectStart={setDragConnectStart} /></>}
                 </div>
              );
